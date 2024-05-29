@@ -1,1 +1,27 @@
-<app-home></app-home>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+    <div class="container">
+        <a class="navbar-brand" routerLink="/home">Demo App</a>
+        
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            @if (accountService.currentUser()) {
+                <li class="nav-item">
+                    <a routerLink="/home" routerLinkActive="active" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/home2" routerLinkActive="active" class="nav-link">Home 2</a>
+                </li>
+            }
+        </ul>
+
+        <div dropdown class="dropdown">
+            <a dropdownToggle class="dropdown-toggle text-light text-decoration-none">
+                Welcome {{accountService.currentUser()?.userName}}
+            </a>
+            <div *dropdownMenu class="dropdown-menu mt-3">
+                <a routerLink="/member/edit" class="dropdown-item">Edit profile</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" (click)="logout()">Logout</a>
+            </div>
+        </div>
+    </div>
+</nav>
